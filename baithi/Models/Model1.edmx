@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="quanlydocauModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="chietkhau">
+          <Key>
+            <PropertyRef Name="IDchietkhau" />
+          </Key>
+          <Property Name="IDchietkhau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="chietkhauphantram" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'quanlydocau.dbo.doanhthu' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="doanhthu">
+          <Property Name="ngaykiem" Type="date" />
+          <Property Name="doanhthuthu" Type="float" />
+          <Property Name="doanhthuchi" Type="float" />
+        </EntityType>-->
+        <EntityType Name="hdchitiet">
+          <Key>
+            <PropertyRef Name="IDhoadon" />
+          </Key>
+          <Property Name="IDhoadon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDsp" Type="int" />
+          <Property Name="IDkhachhang" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="dongia" Type="float" />
+          <Property Name="thanhtien" Type="float" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDnv" Type="int" />
+          <Property Name="IDchietkhau" Type="int" />
+        </EntityType>
+        <EntityType Name="hoadonsp">
+          <Key>
+            <PropertyRef Name="IDhoadon" />
+          </Key>
+          <Property Name="IDhoadon" Type="int" Nullable="false" />
+          <Property Name="IDkhachhang" Type="int" />
+          <Property Name="ngayban" Type="date" />
+          <Property Name="tongtien" Type="float" />
+        </EntityType>
+        <EntityType Name="kh_hang">
+          <Key>
+            <PropertyRef Name="IDkhachhang" />
+          </Key>
+          <Property Name="IDkhachhang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenkhachhang" Type="nvarchar" MaxLength="50" />
+          <Property Name="sdt" Type="int" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="khosp">
+          <Key>
+            <PropertyRef Name="IDsp" />
+          </Key>
+          <Property Name="IDsp" Type="int" Nullable="false" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="50" />
+          <Property Name="soluong" Type="int" />
+        </EntityType>
+        <EntityType Name="loai">
+          <Key>
+            <PropertyRef Name="IDsp" />
+          </Key>
+          <Property Name="IDsp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="50" />
+          <Property Name="congdung" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'quanlydocau.dbo.login' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="login">
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="ncc">
+          <Key>
+            <PropertyRef Name="IDsp" />
+          </Key>
+          <Property Name="ncc" Type="nvarchar" MaxLength="50" />
+          <Property Name="sdt" Type="int" />
+          <Property Name="diachi" Type="nvarchar(max)" />
+          <Property Name="IDsp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nv">
+          <Key>
+            <PropertyRef Name="IDnv" />
+          </Key>
+          <Property Name="IDnv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tennv" Type="nvarchar" MaxLength="50" />
+          <Property Name="gioitinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="namsinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="50" />
+          <Property Name="sdt" Type="int" />
+          <Property Name="chucvu" Type="nvarchar" MaxLength="50" />
+          <Property Name="luong" Type="float" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="IDsp" />
+          </Key>
+          <Property Name="IDsp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="50" />
+          <Property Name="size" Type="nvarchar" MaxLength="50" />
+          <Property Name="loai" Type="nvarchar" MaxLength="50" />
+          <Property Name="hang" Type="nvarchar" MaxLength="50" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="giathanh" Type="float" />
+          <Property Name="anh" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_hdchitiet_chietkhau">
+          <End Role="chietkhau" Type="Self.chietkhau" Multiplicity="0..1" />
+          <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chietkhau">
+              <PropertyRef Name="IDchietkhau" />
+            </Principal>
+            <Dependent Role="hdchitiet">
+              <PropertyRef Name="IDchietkhau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdchitiet_nv">
+          <End Role="nv" Type="Self.nv" Multiplicity="0..1" />
+          <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nv">
+              <PropertyRef Name="IDnv" />
+            </Principal>
+            <Dependent Role="hdchitiet">
+              <PropertyRef Name="IDnv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdchitiet_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="IDsp" />
+            </Principal>
+            <Dependent Role="hdchitiet">
+              <PropertyRef Name="IDsp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hoadonsp_hdchitiet">
+          <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="1" />
+          <End Role="hoadonsp" Type="Self.hoadonsp" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="hdchitiet">
+              <PropertyRef Name="IDhoadon" />
+            </Principal>
+            <Dependent Role="hoadonsp">
+              <PropertyRef Name="IDhoadon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hoadonsp_kh_hang">
+          <End Role="kh_hang" Type="Self.kh_hang" Multiplicity="0..1" />
+          <End Role="hoadonsp" Type="Self.hoadonsp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kh_hang">
+              <PropertyRef Name="IDkhachhang" />
+            </Principal>
+            <Dependent Role="hoadonsp">
+              <PropertyRef Name="IDkhachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_khosp_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="khosp" Type="Self.khosp" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="IDsp" />
+            </Principal>
+            <Dependent Role="khosp">
+              <PropertyRef Name="IDsp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_loai_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="loai" Type="Self.loai" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="IDsp" />
+            </Principal>
+            <Dependent Role="loai">
+              <PropertyRef Name="IDsp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ncc_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="ncc" Type="Self.ncc" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="IDsp" />
+            </Principal>
+            <Dependent Role="ncc">
+              <PropertyRef Name="IDsp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="quanlydocauModelStoreContainer">
+          <EntitySet Name="chietkhau" EntityType="Self.chietkhau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hdchitiet" EntityType="Self.hdchitiet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hoadonsp" EntityType="Self.hoadonsp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kh_hang" EntityType="Self.kh_hang" Schema="dbo" Table="kh.hang" store:Type="Tables" />
+          <EntitySet Name="khosp" EntityType="Self.khosp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loai" EntityType="Self.loai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ncc" EntityType="Self.ncc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nv" EntityType="Self.nv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_hdchitiet_chietkhau" Association="Self.FK_hdchitiet_chietkhau">
+            <End Role="chietkhau" EntitySet="chietkhau" />
+            <End Role="hdchitiet" EntitySet="hdchitiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdchitiet_nv" Association="Self.FK_hdchitiet_nv">
+            <End Role="nv" EntitySet="nv" />
+            <End Role="hdchitiet" EntitySet="hdchitiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdchitiet_sanpham" Association="Self.FK_hdchitiet_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="hdchitiet" EntitySet="hdchitiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hoadonsp_hdchitiet" Association="Self.FK_hoadonsp_hdchitiet">
+            <End Role="hdchitiet" EntitySet="hdchitiet" />
+            <End Role="hoadonsp" EntitySet="hoadonsp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hoadonsp_kh_hang" Association="Self.FK_hoadonsp_kh_hang">
+            <End Role="kh_hang" EntitySet="kh_hang" />
+            <End Role="hoadonsp" EntitySet="hoadonsp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_khosp_sanpham" Association="Self.FK_khosp_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="khosp" EntitySet="khosp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_loai_sanpham" Association="Self.FK_loai_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="loai" EntitySet="loai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ncc_sanpham" Association="Self.FK_ncc_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="ncc" EntitySet="ncc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="quanlydocauModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="chietkhau">
+          <Key>
+            <PropertyRef Name="IDchietkhau" />
+          </Key>
+          <Property Name="IDchietkhau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="chietkhauphantram" Type="Int32" />
+          <NavigationProperty Name="hdchitiets" Relationship="Self.FK_hdchitiet_chietkhau" FromRole="chietkhau" ToRole="hdchitiet" />
+        </EntityType>
+        <EntityType Name="hdchitiet">
+          <Key>
+            <PropertyRef Name="IDhoadon" />
+          </Key>
+          <Property Name="IDhoadon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDsp" Type="Int32" />
+          <Property Name="IDkhachhang" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="dongia" Type="Double" />
+          <Property Name="thanhtien" Type="Double" />
+          <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDnv" Type="Int32" />
+          <Property Name="IDchietkhau" Type="Int32" />
+          <NavigationProperty Name="chietkhau" Relationship="Self.FK_hdchitiet_chietkhau" FromRole="hdchitiet" ToRole="chietkhau" />
+          <NavigationProperty Name="nv" Relationship="Self.FK_hdchitiet_nv" FromRole="hdchitiet" ToRole="nv" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_hdchitiet_sanpham" FromRole="hdchitiet" ToRole="sanpham" />
+          <NavigationProperty Name="hoadonsp" Relationship="Self.FK_hoadonsp_hdchitiet" FromRole="hdchitiet" ToRole="hoadonsp" />
+        </EntityType>
+        <EntityType Name="hoadonsp">
+          <Key>
+            <PropertyRef Name="IDhoadon" />
+          </Key>
+          <Property Name="IDhoadon" Type="Int32" Nullable="false" />
+          <Property Name="IDkhachhang" Type="Int32" />
+          <Property Name="ngayban" Type="DateTime" Precision="0" />
+          <Property Name="tongtien" Type="Double" />
+          <NavigationProperty Name="hdchitiet" Relationship="Self.FK_hoadonsp_hdchitiet" FromRole="hoadonsp" ToRole="hdchitiet" />
+          <NavigationProperty Name="kh_hang" Relationship="Self.FK_hoadonsp_kh_hang" FromRole="hoadonsp" ToRole="kh_hang" />
+        </EntityType>
+        <EntityType Name="kh_hang">
+          <Key>
+            <PropertyRef Name="IDkhachhang" />
+          </Key>
+          <Property Name="IDkhachhang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenkhachhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sdt" Type="Int32" />
+          <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="hoadonsps" Relationship="Self.FK_hoadonsp_kh_hang" FromRole="kh_hang" ToRole="hoadonsp" />
+        </EntityType>
+        <EntityType Name="khosp">
+          <Key>
+            <PropertyRef Name="IDsp" />
+          </Key>
+          <Property Name="IDsp" Type="Int32" Nullable="false" />
+          <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soluong" Type="Int32" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_khosp_sanpham" FromRole="khosp" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="loai">
+          <Key>
+            <PropertyRef Name="IDsp" />
+          </Key>
+          <Property Name="IDsp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="congdung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_loai_sanpham" FromRole="loai" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="ncc">
+          <Key>
+            <PropertyRef Name="IDsp" />
+          </Key>
+          <Property Name="ncc1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sdt" Type="Int32" />
+          <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDsp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_ncc_sanpham" FromRole="ncc" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="nv">
+          <Key>
+            <PropertyRef Name="IDnv" />
+          </Key>
+          <Property Name="IDnv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tennv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gioitinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="namsinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sdt" Type="Int32" />
+          <Property Name="chucvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="luong" Type="Double" />
+          <NavigationProperty Name="hdchitiets" Relationship="Self.FK_hdchitiet_nv" FromRole="nv" ToRole="hdchitiet" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="IDsp" />
+          </Key>
+          <Property Name="IDsp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="loai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="giathanh" Type="Double" />
+          <Property Name="anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="hdchitiets" Relationship="Self.FK_hdchitiet_sanpham" FromRole="sanpham" ToRole="hdchitiet" />
+          <NavigationProperty Name="khosp" Relationship="Self.FK_khosp_sanpham" FromRole="sanpham" ToRole="khosp" />
+          <NavigationProperty Name="loai1" Relationship="Self.FK_loai_sanpham" FromRole="sanpham" ToRole="loai" />
+          <NavigationProperty Name="ncc" Relationship="Self.FK_ncc_sanpham" FromRole="sanpham" ToRole="ncc" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_hdchitiet_chietkhau">
+          <End Role="chietkhau" Type="Self.chietkhau" Multiplicity="0..1" />
+          <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chietkhau">
+              <PropertyRef Name="IDchietkhau" />
+            </Principal>
+            <Dependent Role="hdchitiet">
+              <PropertyRef Name="IDchietkhau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdchitiet_nv">
+          <End Role="nv" Type="Self.nv" Multiplicity="0..1" />
+          <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nv">
+              <PropertyRef Name="IDnv" />
+            </Principal>
+            <Dependent Role="hdchitiet">
+              <PropertyRef Name="IDnv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdchitiet_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="IDsp" />
+            </Principal>
+            <Dependent Role="hdchitiet">
+              <PropertyRef Name="IDsp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hoadonsp_hdchitiet">
+          <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="1" />
+          <End Role="hoadonsp" Type="Self.hoadonsp" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="hdchitiet">
+              <PropertyRef Name="IDhoadon" />
+            </Principal>
+            <Dependent Role="hoadonsp">
+              <PropertyRef Name="IDhoadon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hoadonsp_kh_hang">
+          <End Role="kh_hang" Type="Self.kh_hang" Multiplicity="0..1" />
+          <End Role="hoadonsp" Type="Self.hoadonsp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kh_hang">
+              <PropertyRef Name="IDkhachhang" />
+            </Principal>
+            <Dependent Role="hoadonsp">
+              <PropertyRef Name="IDkhachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_khosp_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="khosp" Type="Self.khosp" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="IDsp" />
+            </Principal>
+            <Dependent Role="khosp">
+              <PropertyRef Name="IDsp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_loai_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="loai" Type="Self.loai" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="IDsp" />
+            </Principal>
+            <Dependent Role="loai">
+              <PropertyRef Name="IDsp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ncc_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="ncc" Type="Self.ncc" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="IDsp" />
+            </Principal>
+            <Dependent Role="ncc">
+              <PropertyRef Name="IDsp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="quanlydocauEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="chietkhaus" EntityType="Self.chietkhau" />
+          <EntitySet Name="hdchitiets" EntityType="Self.hdchitiet" />
+          <EntitySet Name="hoadonsps" EntityType="Self.hoadonsp" />
+          <EntitySet Name="kh_hang" EntityType="Self.kh_hang" />
+          <EntitySet Name="khosps" EntityType="Self.khosp" />
+          <EntitySet Name="loais" EntityType="Self.loai" />
+          <EntitySet Name="nccs" EntityType="Self.ncc" />
+          <EntitySet Name="nvs" EntityType="Self.nv" />
+          <EntitySet Name="sanphams" EntityType="Self.sanpham" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_hdchitiet_chietkhau" Association="Self.FK_hdchitiet_chietkhau">
+            <End Role="chietkhau" EntitySet="chietkhaus" />
+            <End Role="hdchitiet" EntitySet="hdchitiets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdchitiet_nv" Association="Self.FK_hdchitiet_nv">
+            <End Role="nv" EntitySet="nvs" />
+            <End Role="hdchitiet" EntitySet="hdchitiets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdchitiet_sanpham" Association="Self.FK_hdchitiet_sanpham">
+            <End Role="sanpham" EntitySet="sanphams" />
+            <End Role="hdchitiet" EntitySet="hdchitiets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hoadonsp_hdchitiet" Association="Self.FK_hoadonsp_hdchitiet">
+            <End Role="hdchitiet" EntitySet="hdchitiets" />
+            <End Role="hoadonsp" EntitySet="hoadonsps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hoadonsp_kh_hang" Association="Self.FK_hoadonsp_kh_hang">
+            <End Role="kh_hang" EntitySet="kh_hang" />
+            <End Role="hoadonsp" EntitySet="hoadonsps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_khosp_sanpham" Association="Self.FK_khosp_sanpham">
+            <End Role="sanpham" EntitySet="sanphams" />
+            <End Role="khosp" EntitySet="khosps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_loai_sanpham" Association="Self.FK_loai_sanpham">
+            <End Role="sanpham" EntitySet="sanphams" />
+            <End Role="loai" EntitySet="loais" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ncc_sanpham" Association="Self.FK_ncc_sanpham">
+            <End Role="sanpham" EntitySet="sanphams" />
+            <End Role="ncc" EntitySet="nccs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="quanlydocauModelStoreContainer" CdmEntityContainer="quanlydocauEntities">
+          <EntitySetMapping Name="chietkhaus">
+            <EntityTypeMapping TypeName="quanlydocauModel.chietkhau">
+              <MappingFragment StoreEntitySet="chietkhau">
+                <ScalarProperty Name="IDchietkhau" ColumnName="IDchietkhau" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="chietkhauphantram" ColumnName="chietkhauphantram" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hdchitiets">
+            <EntityTypeMapping TypeName="quanlydocauModel.hdchitiet">
+              <MappingFragment StoreEntitySet="hdchitiet">
+                <ScalarProperty Name="IDhoadon" ColumnName="IDhoadon" />
+                <ScalarProperty Name="IDsp" ColumnName="IDsp" />
+                <ScalarProperty Name="IDkhachhang" ColumnName="IDkhachhang" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="thanhtien" ColumnName="thanhtien" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="IDnv" ColumnName="IDnv" />
+                <ScalarProperty Name="IDchietkhau" ColumnName="IDchietkhau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hoadonsps">
+            <EntityTypeMapping TypeName="quanlydocauModel.hoadonsp">
+              <MappingFragment StoreEntitySet="hoadonsp">
+                <ScalarProperty Name="IDhoadon" ColumnName="IDhoadon" />
+                <ScalarProperty Name="IDkhachhang" ColumnName="IDkhachhang" />
+                <ScalarProperty Name="ngayban" ColumnName="ngayban" />
+                <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kh_hang">
+            <EntityTypeMapping TypeName="quanlydocauModel.kh_hang">
+              <MappingFragment StoreEntitySet="kh_hang">
+                <ScalarProperty Name="IDkhachhang" ColumnName="IDkhachhang" />
+                <ScalarProperty Name="tenkhachhang" ColumnName="tenkhachhang" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khosps">
+            <EntityTypeMapping TypeName="quanlydocauModel.khosp">
+              <MappingFragment StoreEntitySet="khosp">
+                <ScalarProperty Name="IDsp" ColumnName="IDsp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loais">
+            <EntityTypeMapping TypeName="quanlydocauModel.loai">
+              <MappingFragment StoreEntitySet="loai">
+                <ScalarProperty Name="IDsp" ColumnName="IDsp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="congdung" ColumnName="congdung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nccs">
+            <EntityTypeMapping TypeName="quanlydocauModel.ncc">
+              <MappingFragment StoreEntitySet="ncc">
+                <ScalarProperty Name="ncc1" ColumnName="ncc" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="IDsp" ColumnName="IDsp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nvs">
+            <EntityTypeMapping TypeName="quanlydocauModel.nv">
+              <MappingFragment StoreEntitySet="nv">
+                <ScalarProperty Name="IDnv" ColumnName="IDnv" />
+                <ScalarProperty Name="tennv" ColumnName="tennv" />
+                <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
+                <ScalarProperty Name="namsinh" ColumnName="namsinh" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="chucvu" ColumnName="chucvu" />
+                <ScalarProperty Name="luong" ColumnName="luong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sanphams">
+            <EntityTypeMapping TypeName="quanlydocauModel.sanpham">
+              <MappingFragment StoreEntitySet="sanpham">
+                <ScalarProperty Name="IDsp" ColumnName="IDsp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="loai" ColumnName="loai" />
+                <ScalarProperty Name="hang" ColumnName="hang" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="giathanh" ColumnName="giathanh" />
+                <ScalarProperty Name="anh" ColumnName="anh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="quanlydocauModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

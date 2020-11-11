@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="quanlydocauModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="chietkhau">
+    <Key>
+      <PropertyRef Name="IDchietkhau" />
+    </Key>
+    <Property Name="IDchietkhau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="chietkhauphantram" Type="Int32" />
+    <NavigationProperty Name="hdchitiets" Relationship="Self.FK_hdchitiet_chietkhau" FromRole="chietkhau" ToRole="hdchitiet" />
+  </EntityType>
+  <EntityType Name="hdchitiet">
+    <Key>
+      <PropertyRef Name="IDhoadon" />
+    </Key>
+    <Property Name="IDhoadon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDsp" Type="Int32" />
+    <Property Name="IDkhachhang" Type="Int32" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="dongia" Type="Double" />
+    <Property Name="thanhtien" Type="Double" />
+    <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDnv" Type="Int32" />
+    <Property Name="IDchietkhau" Type="Int32" />
+    <NavigationProperty Name="chietkhau" Relationship="Self.FK_hdchitiet_chietkhau" FromRole="hdchitiet" ToRole="chietkhau" />
+    <NavigationProperty Name="nv" Relationship="Self.FK_hdchitiet_nv" FromRole="hdchitiet" ToRole="nv" />
+    <NavigationProperty Name="sanpham" Relationship="Self.FK_hdchitiet_sanpham" FromRole="hdchitiet" ToRole="sanpham" />
+    <NavigationProperty Name="hoadonsp" Relationship="Self.FK_hoadonsp_hdchitiet" FromRole="hdchitiet" ToRole="hoadonsp" />
+  </EntityType>
+  <EntityType Name="hoadonsp">
+    <Key>
+      <PropertyRef Name="IDhoadon" />
+    </Key>
+    <Property Name="IDhoadon" Type="Int32" Nullable="false" />
+    <Property Name="IDkhachhang" Type="Int32" />
+    <Property Name="ngayban" Type="DateTime" Precision="0" />
+    <Property Name="tongtien" Type="Double" />
+    <NavigationProperty Name="hdchitiet" Relationship="Self.FK_hoadonsp_hdchitiet" FromRole="hoadonsp" ToRole="hdchitiet" />
+    <NavigationProperty Name="kh_hang" Relationship="Self.FK_hoadonsp_kh_hang" FromRole="hoadonsp" ToRole="kh_hang" />
+  </EntityType>
+  <EntityType Name="kh_hang">
+    <Key>
+      <PropertyRef Name="IDkhachhang" />
+    </Key>
+    <Property Name="IDkhachhang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenkhachhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sdt" Type="Int32" />
+    <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="hoadonsps" Relationship="Self.FK_hoadonsp_kh_hang" FromRole="kh_hang" ToRole="hoadonsp" />
+  </EntityType>
+  <EntityType Name="khosp">
+    <Key>
+      <PropertyRef Name="IDsp" />
+    </Key>
+    <Property Name="IDsp" Type="Int32" Nullable="false" />
+    <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="soluong" Type="Int32" />
+    <NavigationProperty Name="sanpham" Relationship="Self.FK_khosp_sanpham" FromRole="khosp" ToRole="sanpham" />
+  </EntityType>
+  <EntityType Name="loai">
+    <Key>
+      <PropertyRef Name="IDsp" />
+    </Key>
+    <Property Name="IDsp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="congdung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sanpham" Relationship="Self.FK_loai_sanpham" FromRole="loai" ToRole="sanpham" />
+  </EntityType>
+  <EntityType Name="ncc">
+    <Key>
+      <PropertyRef Name="IDsp" />
+    </Key>
+    <Property Name="ncc1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sdt" Type="Int32" />
+    <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IDsp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="sanpham" Relationship="Self.FK_ncc_sanpham" FromRole="ncc" ToRole="sanpham" />
+  </EntityType>
+  <EntityType Name="nv">
+    <Key>
+      <PropertyRef Name="IDnv" />
+    </Key>
+    <Property Name="IDnv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tennv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gioitinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="namsinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sdt" Type="Int32" />
+    <Property Name="chucvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="luong" Type="Double" />
+    <NavigationProperty Name="hdchitiets" Relationship="Self.FK_hdchitiet_nv" FromRole="nv" ToRole="hdchitiet" />
+  </EntityType>
+  <EntityType Name="sanpham">
+    <Key>
+      <PropertyRef Name="IDsp" />
+    </Key>
+    <Property Name="IDsp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="loai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="giathanh" Type="Double" />
+    <Property Name="anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="hdchitiets" Relationship="Self.FK_hdchitiet_sanpham" FromRole="sanpham" ToRole="hdchitiet" />
+    <NavigationProperty Name="khosp" Relationship="Self.FK_khosp_sanpham" FromRole="sanpham" ToRole="khosp" />
+    <NavigationProperty Name="loai1" Relationship="Self.FK_loai_sanpham" FromRole="sanpham" ToRole="loai" />
+    <NavigationProperty Name="ncc" Relationship="Self.FK_ncc_sanpham" FromRole="sanpham" ToRole="ncc" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_hdchitiet_chietkhau">
+    <End Role="chietkhau" Type="Self.chietkhau" Multiplicity="0..1" />
+    <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chietkhau">
+        <PropertyRef Name="IDchietkhau" />
+      </Principal>
+      <Dependent Role="hdchitiet">
+        <PropertyRef Name="IDchietkhau" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hdchitiet_nv">
+    <End Role="nv" Type="Self.nv" Multiplicity="0..1" />
+    <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nv">
+        <PropertyRef Name="IDnv" />
+      </Principal>
+      <Dependent Role="hdchitiet">
+        <PropertyRef Name="IDnv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hdchitiet_sanpham">
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+    <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="IDsp" />
+      </Principal>
+      <Dependent Role="hdchitiet">
+        <PropertyRef Name="IDsp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonsp_hdchitiet">
+    <End Role="hdchitiet" Type="Self.hdchitiet" Multiplicity="1" />
+    <End Role="hoadonsp" Type="Self.hoadonsp" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="hdchitiet">
+        <PropertyRef Name="IDhoadon" />
+      </Principal>
+      <Dependent Role="hoadonsp">
+        <PropertyRef Name="IDhoadon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonsp_kh_hang">
+    <End Role="kh_hang" Type="Self.kh_hang" Multiplicity="0..1" />
+    <End Role="hoadonsp" Type="Self.hoadonsp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kh_hang">
+        <PropertyRef Name="IDkhachhang" />
+      </Principal>
+      <Dependent Role="hoadonsp">
+        <PropertyRef Name="IDkhachhang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_khosp_sanpham">
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+    <End Role="khosp" Type="Self.khosp" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="IDsp" />
+      </Principal>
+      <Dependent Role="khosp">
+        <PropertyRef Name="IDsp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loai_sanpham">
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+    <End Role="loai" Type="Self.loai" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="IDsp" />
+      </Principal>
+      <Dependent Role="loai">
+        <PropertyRef Name="IDsp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ncc_sanpham">
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+    <End Role="ncc" Type="Self.ncc" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="IDsp" />
+      </Principal>
+      <Dependent Role="ncc">
+        <PropertyRef Name="IDsp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="quanlydocauEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="chietkhaus" EntityType="Self.chietkhau" />
+    <EntitySet Name="hdchitiets" EntityType="Self.hdchitiet" />
+    <EntitySet Name="hoadonsps" EntityType="Self.hoadonsp" />
+    <EntitySet Name="kh_hang" EntityType="Self.kh_hang" />
+    <EntitySet Name="khosps" EntityType="Self.khosp" />
+    <EntitySet Name="loais" EntityType="Self.loai" />
+    <EntitySet Name="nccs" EntityType="Self.ncc" />
+    <EntitySet Name="nvs" EntityType="Self.nv" />
+    <EntitySet Name="sanphams" EntityType="Self.sanpham" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_hdchitiet_chietkhau" Association="Self.FK_hdchitiet_chietkhau">
+      <End Role="chietkhau" EntitySet="chietkhaus" />
+      <End Role="hdchitiet" EntitySet="hdchitiets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hdchitiet_nv" Association="Self.FK_hdchitiet_nv">
+      <End Role="nv" EntitySet="nvs" />
+      <End Role="hdchitiet" EntitySet="hdchitiets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hdchitiet_sanpham" Association="Self.FK_hdchitiet_sanpham">
+      <End Role="sanpham" EntitySet="sanphams" />
+      <End Role="hdchitiet" EntitySet="hdchitiets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonsp_hdchitiet" Association="Self.FK_hoadonsp_hdchitiet">
+      <End Role="hdchitiet" EntitySet="hdchitiets" />
+      <End Role="hoadonsp" EntitySet="hoadonsps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonsp_kh_hang" Association="Self.FK_hoadonsp_kh_hang">
+      <End Role="kh_hang" EntitySet="kh_hang" />
+      <End Role="hoadonsp" EntitySet="hoadonsps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_khosp_sanpham" Association="Self.FK_khosp_sanpham">
+      <End Role="sanpham" EntitySet="sanphams" />
+      <End Role="khosp" EntitySet="khosps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loai_sanpham" Association="Self.FK_loai_sanpham">
+      <End Role="sanpham" EntitySet="sanphams" />
+      <End Role="loai" EntitySet="loais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ncc_sanpham" Association="Self.FK_ncc_sanpham">
+      <End Role="sanpham" EntitySet="sanphams" />
+      <End Role="ncc" EntitySet="nccs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

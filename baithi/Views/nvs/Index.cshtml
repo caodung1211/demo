@@ -1,0 +1,70 @@
+﻿@model IEnumerable<baithi.Models.nv>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tennv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gioitinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.namsinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.diachi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sdt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.chucvu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.luong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tennv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gioitinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.namsinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diachi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sdt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.chucvu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.luong)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDnv }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDnv }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDnv })
+        </td>
+    </tr>
+}
+
+</table>

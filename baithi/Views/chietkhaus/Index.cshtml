@@ -1,0 +1,40 @@
+﻿@model IEnumerable<baithi.Models.chietkhau>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.soluong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.chietkhauphantram)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.soluong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.chietkhauphantram)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDchietkhau }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDchietkhau }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDchietkhau })
+        </td>
+    </tr>
+}
+
+</table>

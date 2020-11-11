@@ -1,0 +1,19 @@
+﻿@model IEnumerable<baithi.Models.sanpham>
+@{
+    ViewBag.Title = "Trang chủ";
+}
+
+<div class="products">
+    <div class="row">
+        @{ foreach (var item in Model)
+            {
+                <div class="col-4">
+                    <img src="~/Images/@item.anh" />
+                    <h2>@item.tensp</h2>
+                    <p>@item.giathanh</p>
+                </div>
+            }
+
+        }
+    </div>
+</div>
